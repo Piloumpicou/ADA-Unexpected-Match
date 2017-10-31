@@ -5,7 +5,7 @@
 A 150 word description of the project idea, goals, dataset used. What story you would like to tell and why? What's the motivation behind your project?
 -->
 
-How amazing would it be to have your own song played in front of thousands of people for the first time and a few weeks later, it figures in the top hits of the summer 2018 although you are absolutely not gifted for music ?!
+How amazing would it be to have your own song played in front of thousands of people for the first time (like during Balélec!) and a few weeks later, it figures in the top hits of the summer 2018 although you are absolutely not gifted for music ?!
 
 But despite having no artistic talent, we have a few data science analysis skills and would like to use them in order to fulfil our dream. We will explore the Million Song Dataset, which contains an impressive selection of songs descriptions. We will also correlate it with a few other datasets related to it in order to gather as many features as possible on what makes a song successful.
 
@@ -20,7 +20,7 @@ A list of research q)uestions you would like to address during the project.
 
 - Where does the (popular) music come from ? (geographically) Can we visualize how the music is 'linked', throughout the world ?
 
-- Was the music better before ? Are there more "bad song" today than in th nineties ?
+- Was the music better before ? Are there more "bad song" today than in the nineties ?
 
 # Dataset
 <!--
@@ -80,3 +80,4 @@ Add here some questions you have for us, in general or project-specific.
 
 Would it be worthwhile to analyse the corresponding audio? 
 (if yes, what would be good existing libraries or tools for this task?)
+(And secondly, do you know someone involved in the music program of Balélec?)
