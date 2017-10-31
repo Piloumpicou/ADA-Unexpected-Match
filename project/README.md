@@ -5,9 +5,11 @@
 A 150 word description of the project idea, goals, dataset used. What story you would like to tell and why? What's the motivation behind your project?
 -->
 
-How amazing would it be to have your own song played in front of thousands of people (like during Balélec) for the first time and a few weeks later, it figures in the top hits of the summer 2018 although you are absolutely not gifted for music ?!
+How amazing would it be to have your own song played in front of thousands of people for the first time and a few weeks later, it figures in the top hits of the summer 2018 although you are absolutely not gifted for music ?!
 
-But despite having no artistic talent, we have a few data science analysis skills and would like to use in order to fulfil our dream. We will explore the Million Song dataset as well as other ones to find the best ingredients making a song popular. Since we are not yet worldwise well-known artists, we will need to work mostly on "unknow" artists having produced popular songs.
+But despite having no artistic talent, we have a few data science analysis skills and would like to use them in order to fulfil our dream. We will explore the Million Song Dataset, which contains an impressive selection of songs descriptions. We will also correlate it with a few other datasets related to it in order to gather as many features as possible on what makes a song successful.
+
+In the end, we want to find the best ingredients making a song popular. Since we are not yet worldwide well-known artists, we will need to work mostly on "unknown" artists having produced popular songs.
 
 # Research questions
 <!--
