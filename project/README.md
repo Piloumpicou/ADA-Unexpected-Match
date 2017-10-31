@@ -14,7 +14,7 @@ But despite having no artistic talent, we have a few data science analysis skill
 A list of research q)uestions you would like to address during the project. 
 -->
 
-- What kind of correlation can we find between popular (hotness) songs and loudness, energy, danceability, key, pitch, tempo ...
+- What kind of correlation can we find between popular (hotness) songs and loudness, energy, danceability, key, pitch, tempo, ...
 
 - Where does the (popular) music come from ? (geographically) Can we visualize how the music is 'linked', throughout the world ?
 
@@ -55,21 +55,21 @@ Add here a sketch of your planning for the next project milestone.
 -->
   
 - 1-5 November: 
-  - get access to the data and the cluster, install library if needed, 
+  - get access to the data and the cluster, install libraries if needed
   - provide a way to handle the dataset easily 
                
 - 6-12 November:
-  - make some search about the work done on the MSD that could be useful for our project
+  - make some research on work that could be useful for our project already done on the MSD 
+  - explore the different datasets, get a global overview of them using basic statistics
 
 - 13-19 November:
-  - start exploring and analysing the data
-  - take care of missing value,find most popular song, and most popular autor
-  - explore thedatasets, get a global overview of the dataset using basic statistics
-            
+  - dive more deeply into the datasets and the analysis of the data
+  - take care of missing value, find the most popular songs, the most popular autors, ...
+             
 - 20-26 November:
   - select the useful data, the most relevant features for the analysis
-  - plan for milestone 3, to find the most popular songs and
-  - think about interestings ways of vizualising the data and our results
+  - think about interestings ways of vizualising the data and the results
+  - plan for milestone 3, in order to find the most popular songs and their characteristic features
 
 # Questions for TAa
 <!--
