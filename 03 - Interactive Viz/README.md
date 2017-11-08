@@ -1,3 +1,4 @@
+**Get here -> https://piloumpicou.github.io/ <- to visualize the notebook with the maps
 # 03 - Interactive Viz
 
 ## Deadline
