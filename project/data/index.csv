@@ -17,9 +17,9 @@ title,object
 track 7digitalid,object
 similar artists,object
 artist terms,object
-artist terms freq,object
-artist terms weight,object
-analysis sample rate,object
+artist terms freq,float
+artist terms weight,float
+analysis sample rate,float
 audio md5,object
 danceability,float
 duration,float
@@ -35,21 +35,21 @@ tempo,float
 time signature,object
 time signature confidence,float
 track id,object
-segments start,object
-segments confidence,object
-segments pitches,object
-segments timbre,object
-segments loudness max,object
-segments loudness max time,object
-segments loudness start,object
-sections start,object
-sections confidence,object
-beats start,object
-beats confidence,object
-bars start,object
-bars confidence,object
-tatums start,object
-tatums confidence,object
+segments start,float
+segments confidence,float
+segments pitches,float
+segments timbre,float
+segments loudness max,float
+segments loudness max time,float
+segments loudness start,float
+sections start,float
+sections confidence,float
+beats start,float
+beats confidence,float
+bars start,float
+bars confidence,float
+tatums start,float
+tatums confidence,float
 artist mbtags,object
 artist mbtags count,object
 year,integer
