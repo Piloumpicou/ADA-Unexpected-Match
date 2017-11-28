@@ -89,5 +89,9 @@ For the third milestone, we will apply the analysis of the Million Song Dataset 
  - Determine which attributes or combination of attributes make a song popular
  - Determine whether some lyrics or words are often found in popular songs, using the musiXmatch dataset
  - Determine whether these attributes have actually evolved over time or not
+ - Explore the "Taste profile Subset" in the following way :
+     - In a first step, we will create "profiles" regrouping all listenings for each user
+     - In a 2nd step, we will try to clusterize on those profiles, and extract the common best hit in each cluster 
+ - Once all those awsome results and interesting features obtained, we will still need to find a fancy way to tell our story and present our results.
  
 We will probably continue using the Million Song Dataset subset when trying out new ideas, and then apply them on the whole dataset if the results seem interesting.
