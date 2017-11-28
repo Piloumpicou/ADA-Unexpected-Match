@@ -94,4 +94,6 @@ For the third milestone, we will apply the analysis of the Million Song Dataset 
      - In a 2nd step, we will try to clusterize on those profiles, and extract the common best hit in each cluster 
  - Once all those awsome results and interesting features obtained, we will still need to find a fancy way to tell our story and present our results.
  
-We will probably continue using the Million Song Dataset subset when trying out new ideas, and then apply them on the whole dataset if the results seem interesting.
+After getting an overview of the subst, we realized that our second research question, which is about the geographical origin of these songs, is maybe not so relevant. This is because the songs are not from a worldwide sample, but come mostly from the US or Europe, although there might have been some sort of propagation between the different western countries.
+
+Concerning the Million Song Dataset subset we have been using so far, we will probably continue using it when trying out some new approach before apply it on the whole dataset, because we can then get results more quickly this way.
