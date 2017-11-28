@@ -86,6 +86,8 @@ Would it be worthwhile to analyse the corresponding audio?
 
 For the third milestone, we will apply the analysis of the Million Song Dataset subset to the whole dataset. In particular, we want to:
 
- - Determine which features or combination of features make a song popular
+ - Determine which attributes or combination of attributes make a song popular
  - Determine whether some lyrics or words are often found in popular songs, using the musiXmatch dataset
- - Determine whether these features have actually evolved over time or not
+ - Determine whether these attributes have actually evolved over time or not
+ 
+We will probably continue using the Million Song Dataset subset when trying out new ideas, and then apply them on the whole dataset if the results seem interesting.
