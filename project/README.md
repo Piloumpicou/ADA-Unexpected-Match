@@ -81,3 +81,12 @@ Add here some questions you have for us, in general or project-specific.
 Would it be worthwhile to analyse the corresponding audio? 
 (if yes, what would be good existing libraries or tools for this task?)
 (And secondly, do you know someone involved in the music program of Balélec?)
+
+# Plan for milestone 3
+
+For the third milesotne, we will apply the analysis of the Million Song Dataset subset to the whole dataset. In particular, we want to:
+
+ - Determine which features or combination of features make a song popular
+ - Determine whether some lyrics or words are often found in popular songs, using the musiXmatch dataset
+ - Determine whether these features have evolved over time
+  
