@@ -462,7 +462,7 @@
     
     <property>
       <name>yarn.scheduler.minimum-allocation-vcores</name>
-      <value>1</value>
+      <value>5</value>
     </property>
     
     <property>
@@ -634,5 +634,9 @@
       <name>yarn.timeline-service.webapp.https.address</name>
       <value>iccluster061.iccluster.epfl.ch:8190</value>
     </property>
-    
+    <property>
+	<name>spark.yarn.executor.memoryOverhead</name>
+        <value> 8096 </value>
+    </property>
+  
   </configuration>
