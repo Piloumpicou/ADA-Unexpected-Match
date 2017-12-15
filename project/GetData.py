@@ -19,7 +19,7 @@ class NumpyAwareJSONEncoder(json.JSONEncoder):
 
 #reduce fontion to conver data to json 
 def jsonData(data):
-    return json.dumps(data,cls=NumpyAwareJSONEncoder)+','
+    return json.dumps(data,cls=NumpyAwareJSONEncoder)+',\n'
 
 #Funciton that decode hd5 file to what we want
 feature = [get_year,
@@ -61,7 +61,7 @@ def Filter(data):
         for i in lzero:
             if(data[i]==0.0):
                 return False
-        return (data[0]!=0)
+        return True
 
 
 #import findspark
