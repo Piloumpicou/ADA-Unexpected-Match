@@ -1,0 +1,1 @@
+PARK_DRIVER_PYTHON=python2 /home/benjamin/spark/spark-1.6.3-bin-hadoop2.6/bin/spark-submit --master yarn  --num-executors 60 --executor-cores 5 --driver-memory 2g  --executor-memory 4g --conf "spark.yarn.executor.memoryOverhead=8192" GetData.py

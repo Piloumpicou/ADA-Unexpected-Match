@@ -1,7 +1,6 @@
 #This scrit must be launch on the cluster with the comand spark-submit --master yarn GetData.py and spark and yar install like describe on the spark git on ada : https://github.com/epfl-ada/ADA2017-Tutorials/tree/master/05%20-%20Using%20the%20cluster
 
 import numpy as np
-import hdf5_getters
 from hdf5_getters import *
 import json
 import tables
@@ -49,16 +48,16 @@ def LoadData(content):
 
 
     data= [ funct(h5) for funct in feature]    
-    
+    h5.close()
     return data
 
 # keep only elemnt that math the Filter
 def Filter(data):
-        lnan = [1,2,3,9,10,11,12]
+        lnan = [9]
         for i in lnan:
             if(np.isnan(data[i])):
                 return False
-        lzero = [0,3,9,10,11,12]
+        lzero = []
         for i in lzero:
             if(data[i]==0.0):
                 return False
@@ -70,17 +69,30 @@ def Filter(data):
 import pyspark 
 
 conf = pyspark.SparkConf()
-conf.setAppName("GET DATA")
-sc = pyspark.SparkContext(conf=conf)
-
-sc.addPyFile("./hdf5_getters.py")
+conf.setAppName("GET DATA").setMaster("yarn-client").set("spark.executor.heartbeatInterval","36000s").set("spark.network.timeout","360000s")
+sc = pyspark.SparkContext( conf=conf)
 
 # Select on what you want work
-path='hdfs:/datasets/million-song_untar/B/*/*/*.h5'
 
-#Spark !!!! save data to json file
-sc.binaryFiles(path).map(lambda file : LoadData(file) ).filter(Filter).map(jsonData).saveAsTextFile("data.json")
+fjson = open("/buffer/AGREGATE/data.json","w")
+fjson.write('{"columns":'+jsonData([name.__name__[4:].replace('_', ' ') for name in feature])+',\n"data":[')
 
-print("use header like this:")
+# Select on what you want work
+path='hdfs:/datasets/million-song_untar/'
 
-print('{"columns":'+jsonData([name.__name__[4:].replace('_', ' ') for name in feature])+',\n"data":')
+for l1 in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" : 
+    for l2 in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" :
+        for l3 in "ABCDEFGHIJKLMNOPQRSTUVWXYZ" :
+            gp = path+l1+'/'+l2+'/'+l3+'/*.h5'
+            print(gp)
+            #Spark !!!! save data to json file
+            try :
+                cf = sc.binaryFiles(gp).collect()
+                for file in cf:
+                     data = LoadData(file)
+                     if Filter(data):
+                         fjson.write(jsonData(data))
+            except : 
+                pass
+
+fjson.write(']}')
