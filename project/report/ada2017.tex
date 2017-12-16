@@ -18,7 +18,18 @@
 \usepackage{acl2014}
 \usepackage{times}
 \usepackage{url}
+\usepackage[hidelinks]{hyperref}
 \usepackage{latexsym}
+
+\usepackage{graphicx}	% For figure environment
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[font=scriptsize]{subcaption}
+\usepackage[font=scriptsize]{caption}
+
+\PassOptionsToPackage{hyphens}{url}
+
+\renewcommand\_{\textunderscore\allowbreak}
 
 %\setlength\titlebox{5cm}
 
@@ -27,268 +38,227 @@
 % smaller than 5cm (the original size); we will check this
 % in the camera-ready version and ask you to change it back.
 
+\title{2018's Best Hit Recipe}
 
-\title{Name of your project}
-
-\author{First Author \\
-  {\tt email@domain} \\\And
-  Second Author \\
-  {\tt email@domain} \\\And
-Third Author \\
-{\tt email@domain} \\}
+\author{Jean-Thomas Furrer \\
+  {\small\tt jean-thomas.furrer@epfl.ch} \\\And
+  Benjamin Girard \\
+  {\small\tt benjamin.girard@epfl.ch} \\\And
+  Emily Hentgen \\
+{\small\tt emily.hentgen@epfl.ch} \\}
 
 \date{}
 
 \begin{document}
 \maketitle
 \begin{abstract}
-  This document contains the instructions for preparing a report for ADA 2017. The document itself conforms to its own specifications, and is therefore an example of
-  what your manuscript should look like. This document is based on the ACL 2014 paper format.
+
 \end{abstract}
 
-\section{Credits}
-
-This document has been adapted from the instructions for earlier ACL
-proceedings, including those for ACL-2012 by Maggie Li and Michael
-White, those from ACL-2010 by Jing-Shing Chang and Philipp Koehn,
-those for ACL-2008 by Johanna D. Moore, Simone Teufel, James Allan,
-and Sadaoki Furui, those for ACL-2005 by Hwee Tou Ng and Kemal
-Oflazer, those for ACL-2002 by Eugene Charniak and Dekang Lin, and
-earlier ACL and EACL formats. Those versions were written by several
-people, including John Chen, Henry S. Thompson and Donald
-Walker. Additional elements were taken from the formatting
-instructions of the {\em International Joint Conference on Artificial
-  Intelligence}.
 
 \section{Introduction}
 
-The following instructions are directed to the ADA students who decided to prepare a report. Authors are
-required to provide a Portable Document Format (PDF) version of their
-reports. It must be maximum 4-page long, excluding references.
 
-\section{General Instructions}
+Lyrics analysis, geographical analysis, and few high level features (duration, artist popularity, music genre).
 
-Manuscripts must be in two-column format.  Exceptions to the
-two-column format include the title, authors' names and complete
-addresses, which must be centered at the top of the first page, and
-any full-width figures or tables (see the guidelines in
-Subsection~\ref{ssec:first}). {\bf Type single-spaced.}  Start all
-pages directly under the top margin. See the guidelines later
-regarding formatting the first page.
+\section{Related work}
 
-\subsection{Format of Electronic Manuscript}
-\label{sect:pdf}
+\section{Data collection}
+The analysis is based on two different datasets: the Million Song Dataset (MSD), containing records for 1 000 000 contemporary songs, and the musiXmatch dataset, which contains bag-of-words lyrics for 237 662 out of 1 000 000 songs.
 
-For the production of the electronic manuscript you must use Adobe's
-Portable Document Format (PDF). PDF files are usually produced from
-\LaTeX\ using the \textit{pdflatex} command. If your version of
-\LaTeX\ produces Postscript files, you can convert these into PDF
-using \textit{ps2pdf} or \textit{dvipdf}. On Windows, you can also use
-Adobe Distiller to generate PDF.
+\subsection{The Million Song Dataset}
+Initially, we gained insight of the dataset by working with the official MSD subset which covers 10 000 songs, freely available for download at \url{https://labrosa.ee.columbia.edu/millionsong/pages/getting-dataset}.
+We then moved to the full dataset of 1 000 000 songs; however, the analysis only uses a subset of it, because, because we drop entries with undefined value for the \texttt{song hotttnesss} (\texttt{NaN}).
+In the end, we worked on a subset of XXX XXX songs.
 
-Please make sure that your PDF file includes all the necessary fonts
-(especially tree diagrams, symbols, and fonts with Asian
-characters). When you print or create the PDF file, there is usually
-an option in your printer setup to include none, all or just
-non-standard fonts.  Please make sure that you select the option of
-including ALL the fonts. \textbf{Before sending it, test your PDF by
-  printing it from a computer different from the one where it was
-  created.} Moreover, some word processors may generate very large PDF
-files, where each page is rendered as an image. Such images may
-reproduce poorly. In this case, try alternative ways to obtain the
-PDF. One way on some systems is to install a driver for a postscript
-printer, send your document to the printer specifying ``Output to a
-file'', then convert the file to PDF.
+We retrieved the data from the whole dataset, made available on the ADA cluster, as single json file. Beforehand, we drop entries we decided to not analyse. 
+This significantly reduces the size of the data, so that the subsequent analysis could be performed locally.
 
-It is of utmost importance to specify the \textbf{A4 format} (21 cm
-x 29.7 cm) when formatting the report. When working with
-{\tt dvips}, for instance, one should specify {\tt -t a4}.
+\subsection{The musiXmatch dataset}
+Directly retrieved from \url{https://labrosa.ee.columbia.edu/millionsong/musixmatch}
 
-Print-outs of the PDF file on A4 report should be identical to the
-hardcopy version.
+Matched to the MSD by using the \texttt{track\_id}.
+
+Four different files: 
+\texttt{full\_word\_list.txt} (7 MB), \texttt{mxm\_779k\_matches.txt} (85 MB), \texttt{mxm\_dataset\_train.txt} (100 MB) and \texttt{mxm\_dataset\_test.txt} (13 MB).
+
+Use data from train and test set as single dataset, since our analysis no prediction task.
+
+Could match 154 663 tracks with the \texttt{mxm\_779k\_matches} dataset (779 056 songs in total), but in the end, out of 159 430 songs, only 60 146 songs matched with the concatenation of \texttt{mxm\_dataset\_test} and \texttt{mxm\_dataset\_train} dataset.
+
+\section{Dataset description}
+%summary statistics, maths, main algorithms
+
+Matched coordinates to country using reverse geolocation (\texttt{pygeocoder} and \texttt{pygeolib} packages) (35 106 songs with valid coordinates)
+
+Among those songs, there is an unequal repartition between the different countries.
+An overwhelming majority of songs comes from the United States (20 276), followed by the United Kingdom (4 831), but the number goes down to a single song for Afghanistan, China and Bolivia.
 
 
-\subsection{Layout}
-\label{ssec:layout}
+\section{Results and findings}
+Metric for measuring the popularity of a song based on the \texttt{song\_hotttnesss} field of a song, value between 0 and 1, acoording to the Echo Nest in December 2010, when the dataset was compiled.
 
-Format manuscripts two columns to a page, in the manner these
-instructions are formatted. The exact dimensions for a page on A4
-report are:
+Since the \texttt{song\_hotttnesss} fields can be \texttt{NaN}, it remains unclear whether a value of 0 corresponds to a \texttt{song\_hotttnesss}, or that the feature has not been evaluated for this song. 
 
-\begin{itemize}
-\item Left and right margins: 2.5 cm
-\item Top margin: 2.5 cm
-\item Bottom margin: 2.5 cm
-\item Column width: 7.7 cm
-\item Column height: 24.7 cm
-\item Gap between columns: 0.6 cm
-\end{itemize}
-
-\noindent Papers should not be submitted on any other report size, no exceptions.
+Also, strange gap between 0.0 and 0.2: almost no song has a \texttt{song\_hotttnesss} below 0.2.
+%plot of song hotttnesss distribution
 
 
-\subsection{Fonts}
+\subsection{Artist popularity}
+There is a correlation between the \texttt{song\_hotttnesss} and the corresponding artist's \texttt{artist\_hotttnesss}.
+Hot songs tend to be associated to hot artist, but it turns out the hotttessst artists do not make the hotttessst songs.
 
-For reasons of uniformity, Adobe's {\bf Times Roman} font should be
-used. In \LaTeX2e{} this is accomplished by putting
-
-\begin{quote}
-\begin{verbatim}
-\usepackage{times}
-\usepackage{latexsym}
-\end{verbatim}
-\end{quote}
-in the preamble. If Times Roman is unavailable, use {\bf Computer
-  Modern Roman} (\LaTeX2e{}'s default).  Note that the latter is about
-  10\% less dense than Adobe's Times Roman font.
+\begin{figure}[h!]
+\centering
+\captionsetup{width=1.0\textwidth}
+\includegraphics[trim={2cm 4cm 2cm 2cm},clip, scale=0.3]{images/"artist_hotttnesss_vs_song_hotttnesss".png}
+\caption{Artist hotttnesss compared to the average song hotttnesss}
+\label{fig:artist_hotttnesss}
+\end{figure}
 
 
-\begin{table}[h]
-\begin{center}
-\begin{tabular}{|l|rl|}
-\hline \bf Type of Text & \bf Font Size & \bf Style \\ \hline
-report title & 15 pt & bold \\
-author names & 12 pt & bold \\
-the word ``Abstract'' & 12 pt & bold \\
-section titles & 12 pt & bold \\
-document text & 11 pt  &\\
-captions & 11 pt & \\
-abstract text & 10 pt & \\
-bibliography & 10 pt & \\
-footnotes & 9 pt & \\
+
+\subsection{Song duration}
+First remark: MSD does not contain records of the great symphonies like XXX. 
+
+Despite some outliers - the shortest and longest "songs" are 0.67 seconds respectively 3007 seconds (50min 7s) long - close to 75\% (73.47\%) of the songs are 2 to 5 minutes long, a very common duration for contemporary music tracks.
+
+\begin{figure}[h!]
+\centering
+\captionsetup{width=1.0\textwidth}
+\includegraphics[trim={0cm 0cm 0cm 0cm},clip, scale=0.26]{images/"song_duration_vs_song_hotttnesss".png}
+\caption{Song duration against song hotttnesss}
+\label{fig:song_duration}
+\end{figure}
+
+\begin{figure}[h!]
+\centering
+\captionsetup{width=1.0\textwidth}
+\includegraphics[trim={0cm 0cm 0cm 0cm},clip, scale=0.26]{images/"song_duration_average_over_years".png}
+\caption{Average song duration evoluation over the years}
+\label{fig:song_duration_over_years}
+\end{figure}
+
+Three main observations:
+\begin{enumerate}
+\itemsep 0mm
+\item top songs have a duration in a tight interval
+\item over the years, the average song duration of the top songs displays less and less variations
+\item in 2010, the average top songs duration is below the average
+\end{enumerate}
+
+
+
+\subsection{Music genre}
+This analysis is based on the \texttt{artist\_terms} of a song, which can be seen as music genre tags given by the Echo Nest.
+There are at least 6 482 distinct \texttt{artist\_terms} used in the MSD, including all possible variations such as "rap rock", "funk rock", funk rap", "jazz funk", "jazz rap" or "jazz rock".
+Actually, the most recurrent \texttt{artist\_terms} do correspond to music genres, while the least common ones, used for a single song for instance, are more like miscellaneous tags.
+
+The dataset is largely dominated by the rock, pop and electronic genre.\\
+\begin{tabular}{|lr|}
+\hline
+\texttt{artist\_terms} & occurrences\\
+\hline
+rock               & 131337\\
+pop                 & 98814\\
+electronic          & 96684\\
+alternative rock    & 75882\\
+alternative         & 69619\\
+indie               & 62706\\
+hip hop             & 58751\\
+jazz                & 57699\\
+indie rock          & 57193\\
+united states       & 55522\\
+pop rock            & 53863\\ 
+punk                & 53043\\
 \hline
 \end{tabular}
-\end{center}
-\caption{\label{font-table} Font guide.}
-\end{table}
+\captionof{table}{Top-12 \texttt{artist\_terms} (non-weighted)}
 
-\subsection{The First Page}
-\label{ssec:first}
+\begin{tabular}{|lrr|}
+\hline
+\texttt{artist\_terms} & weight (\%) & occurrences\\
+\hline
+rock 				& 4.617761 &	426\\
+pop 				& 3.738941 &	409\\
+alternative 		& 2.493392 &	264\\
+indie 				& 2.221263 &	256\\
+alternative rock 	& 2.011225 &	188\\
+guitar 				& 1.987991 &	308\\
+indie rock 			& 1.904490 &	163\\
+acoustic 			& 1.577093 &	231\\
+electronic 			& 1.488118 &	182\\
+soundtrack 			& 1.482128 &	172\\
+soul 				& 1.328866 &	180\\
+classic rock 		& 1.181799 &	116\\
+punk 				& 1.166998 &	149\\
+\hline
+\end{tabular}
+\captionof{table}{Top-12 \texttt{artist\_terms} (weighted) for a \texttt{song\_hotttnesss} threshold of 0.9 (500 songs), and a minimum number of occurrences of 0}
 
-Center the title and author's name(s) across both
-columns. Do not use footnotes for affiliations. Use the
-two-column format only when you begin the abstract.
+%for a lower threshold, the ranking is essentially very similar, the weights decrease, since more songs are included, and hence more artist terms as well
 
-{\bf Title}: Place the title centered at the top of the first page, in
-a 15-point bold font. (For a complete guide to font sizes and styles,
-see Table~\ref{font-table}) Long titles should be typed on two lines
-without a blank line intervening. Approximately, put the title at 2.5
-cm from the top of the page, followed by a blank line, then the
-author's names(s) on the following line. Do not
-use only initials for given names (middle initials are allowed). Do
-not format surnames in all capitals (e.g., use ``Schlangen'' not
-``SCHLANGEN'').  Do not format title and section headings in all
-capitals as well except for proper names (such as ``BLEU'') that are
-conventionally in all capitals. Start the body of the first page 7.5 cm from the top of the
-page.
+ 	
+\subsection{Lyrics}
+Initially, we analysed the lyrics by considering all the words in the top-5000 list of the musiXmatch dataset. In a second step, we remove the stopwords from the analysis.
 
-{\bf Abstract}: Type the abstract at the beginning of the first
-column. The width of the abstract text should be smaller than the
-width of the columns for the text in the body of the report by about
-0.6 cm on each side. Center the word {\bf Abstract} in a 12 point bold
-font above the body of the abstract. The abstract should be a concise
-summary of the general thesis and conclusions of the report. It should
-be no longer than 150 words. The abstract text should be in 10 point font.
+\subsubsection{With stopwords}
+The main observation resulting from this analysis is that the frequency of English words in lyrics differ from the frequency of English words in prose, particularly regarding the use of pronouns.
+While 'the' is the number one word in term of frequency in English prose, it is "only" ranked third for a \texttt{song threshold} greater than 0.8, behind 'I' and 'you', which are 11th respectively 14th in English prose.
 
-{\bf Text}: Begin typing the main body of the text immediately after
-the abstract, observing the two-column format as shown in 
-the present document. Do not include page numbers.
+The popular songs hence seem to be rather about 'I', 'you' and 'we', and less about 'they' or 'it'.
+Although 'it' has a stable ranking of 8 against 11 in English prose, 'they' (ranked 21st in English prose), systematically scores lower than 'we' (ranked 24th in English prose) in the lyrics.
 
-{\bf Indent} when starting a new paragraph. Use 11 points for text and 
-subsection headings, 12 points for section headings and 15 points for
-the title. 
+In Figure \ref{fig:word_frequency_stopwords}, we show the frequency of the English pronouns in the lyrics as a function of the \texttt{song hotttnesss} threshold.
+We also plot the frequency of the stopword 'the', whose evolution we expect does not very much across songs, independently of their popularity, and which can then serve as a baseline.
+\begin{figure}[h!]
+\centering
+\captionsetup{width=1.0\textwidth}
+\includegraphics[trim={0cm 0cm 0cm 0cm},clip, scale=0.26]{images/"word_frequency_vs_song_hotttnesss".png}
+\caption{Pronouns frequency for different \texttt{song hotttnesss} thresholds}
+\label{fig:word_frequency_stopwords}
+\end{figure}
 
-\subsection{Sections}
+\subsubsection{Without stopwords}
+It is not always obvious to determine whether a word is a stopword or not. We heuristically compiled a list of stopwords using the freely-available lists of stopwords at \url{https://www.ranks.nl/stopwords} and \url{http://www.lextek.com/manuals/onix/stopwords1.html}.
 
-{\bf Headings}: Type and label section and subsection headings in the
-style shown on the present document.  Use numbered sections (Arabic
-numerals) in order to facilitate cross references. Number subsections
-with the section number and the subsection number separated by a dot,
-in Arabic numerals. Do not number subsubsections.
+When ignoring the stopwords in the ranking, we can point out three characteristics that we tend to encounter in popular songs (although these are typically not present all at the same time in hot rated songs):
+\begin{enumerate}
+\itemsep 0mm
+\item The presence of the specific words 'love', 'time' and 'feel', which actually keep ranking among the top places for high \texttt{song hotttnesss} thresholds as well as low ones
+\item The non-negligible use of the interjections 'yeah' and 'oh' (although the frequency of 'oh' drops above a threshold of 0.9)
+\item The use of informal speech like 'gonna', strengthened by the fact that it is often found together with 'yeah'
+\end{enumerate}
+While 'yeah', oh' or 'gonna' could actually also be considered as stopwords, it is interesting to see they are the second "type" of words to rank top, after the stopwords.
 
-{\bf Citations}: Citations within the text appear in parentheses
-as~\cite{Gusfield:97} or, if the author's name appears in the text
-itself, as Gusfield~\shortcite{Gusfield:97}.  Append lowercase letters
-to the year in cases of ambiguity.  Treat double authors as
-in~\cite{Aho:72}, but write as in~\cite{Chandra:81} when more than two
-authors are involved. Collapse multiple citations as
-in~\cite{Gusfield:97,Aho:72}. Also refrain from using full citations
-as sentence constituents. We suggest that instead of
-\begin{quote}
-  ``\cite{Gusfield:97} showed that ...''
-\end{quote}
-you use
-\begin{quote}
-``Gusfield \shortcite{Gusfield:97}   showed that ...''
-\end{quote}
+\subsubsection{Language and country of origin}
+More than 60\% of the songs come from countries of Anglo-Saxon culture (United States, United Kingdom, Canada, Australia, ...). As a consequence, the vast majority of lyrics are written in English, so that words of different languages tend to be eclipsed in the analysis.
+Even after removing the English stopwords, the top ranked words are still English words.
 
-If you are using the provided \LaTeX{} and Bib\TeX{} style files, you
-can use the command \verb|\newcite| to get ``author (year)'' citations.
+However, we also suggest this does not simply reflect the fact that much more songs were sampled from these countries, but also a general trend which can be observed when it comes to popular songs.
+The country of origin of the artist indeed does not necessarily match the language in which the lyrics were written.
+By checking the top songs from non Anglo-Saxon countries such as Sweden, Denmark or Greece, it turns out the lyrics are actually written in English, not in Swedish, Danish or Greek.
+A few of the top songs have Spanish lyrics, but these songs are still a minority though.
 
-\textbf{Please do not use anonymous citations} and do not include
-acknowledgements when submitting your reports..
+%intersection
+%example of Hungarian?
 
-\textbf{References}: Gather the full set of references together under
-the heading {\bf References}. Arrange the references alphabetically
-by first author, rather than by order of occurrence in the text.
-Provide as complete a citation as possible, using a consistent format,
-such as the one for {\em Computational Linguistics\/} or the one in the 
-{\em Publication Manual of the American 
-Psychological Association\/}~\cite{APA:83}.  Use of full names for
-authors rather than initials is preferred.  A list of abbreviations
-for common computer science journals can be found in the ACM 
-{\em Computing Reviews\/}~\cite{ACM:83}.
 
-\subsection{Footnotes}
+%Most words present only in low rated songs are actually non-English words. This also raises the question on how the song hotttnesss was evaluated by the Echo Nest; population may tend to rate English songs rather than non English ones
 
-{\bf Footnotes}: Put footnotes at the bottom of the page and use 9
-points text. They may be numbered or referred to by asterisks or other
-symbols.\footnote{This is how a footnote should appear.} Footnotes
-should be separated from the text by a line.\footnote{Note the line
-separating the footnotes from the text.}
+	
+\section{Conclusions}
 
-\subsection{Graphics}
+MSD: unequal distribution of songs regarding countries
+musiXmatch limitations: bag-of-words (due to copyright issues)
 
-{\bf Illustrations}: Place figures, tables, and photographs in the
-report near where they are first discussed, rather than at the end, if
-possible.  Wide illustrations may run across both columns.
 
-{\bf Captions}: Provide a caption for every illustration; number each one
-sequentially in the form:  ``Figure 1. Caption of the Figure.'' ``Table 1.
-Caption of the Table.''  Type the captions of the figures and 
-tables below the body, using 11 point text.
+
+
 
 \begin{thebibliography}{}
 
-\bibitem[\protect\citename{Aho and Ullman}1972]{Aho:72}
-Alfred~V. Aho and Jeffrey~D. Ullman.
-\newblock 1972.
-\newblock {\em The Theory of Parsing, Translation and Compiling}, volume~1.
-\newblock Prentice-{Hall}, Englewood Cliffs, NJ.
-
-\bibitem[\protect\citename{{American Psychological Association}}1983]{APA:83}
-{American Psychological Association}.
-\newblock 1983.
-\newblock {\em Publications Manual}.
-\newblock American Psychological Association, Washington, DC.
-
-\bibitem[\protect\citename{{Association for Computing Machinery}}1983]{ACM:83}
-{Association for Computing Machinery}.
-\newblock 1983.
-\newblock {\em Computing Reviews}, 24(11):503--512.
-
-\bibitem[\protect\citename{Chandra \bgroup et al.\egroup }1981]{Chandra:81}
-Ashok~K. Chandra, Dexter~C. Kozen, and Larry~J. Stockmeyer.
-\newblock 1981.
-\newblock Alternation.
-\newblock {\em Journal of the Association for Computing Machinery},
-  28(1):114--133.
-
-\bibitem[\protect\citename{Gusfield}1997]{Gusfield:97}
-Dan Gusfield.
-\newblock 1997.
-\newblock {\em Algorithms on Strings, Trees and Sequences}.
-\newblock Cambridge University Press, Cambridge, UK.
+\bibitem[\protect\citename{MSD official documentation}]{MSD}\url{https://labrosa.ee.columbia.edu/millionsong}
 
 \end{thebibliography}
 
