@@ -66,13 +66,24 @@ We briefly present some related work in section 2, and explain how the data was 
 
 \section{Related work}
 %?
+We can find some projet made by student like us, To predict the best sound of the Millon song dataset : 
+
+http://cs229.stanford.edu/proj2013/NtwariNshutiSoria-WhatWillBeYourFavoriteSongLetMeTellYou.pdf
+http://cs229.stanford.edu/proj2014/Angela%20Xue,%20Nick%20Dupoux,%20Predicting%20the%20Commercial%20Success%20of%20Songs%20Based%20on%20Lyrics%20and%20Other%20Metrics.pdf
+http://cs229.stanford.edu/proj2015/140_report.pdf
+http://cs229.stanford.edu/proj2015/145_report.pdf
+https://github.com/thomasSve/Million-Song-Dataset-Analysis/blob/master/report/song-popularity-prediction.pdf
+https://bcourses.berkeley.edu/files/65096715/download?...frd...
+
+However this work are more focused on the machine learning part, try to find one model to predict the hotness.
+In this projet we will be more focus to find the main componant of hotness.
 
 \section{Data collection}
 The analysis is based on two different datasets: the Million Song Dataset (MSD), containing records for 1 000 000 contemporary songs, and the musiXmatch dataset, which contains bag-of-words lyrics for 237 662 out of 1 000 000 songs.
 
 \subsection{The Million Song Dataset}
 Initially, we gained insight into the dataset by working with the official MSD subset which covers 10 000 songs, freely available for download at \url{https://labrosa.ee.columbia.edu/millionsong/pages/getting-dataset}.
-We then moved to the full dataset of 1 000 000 songs; however, the analysis only uses a subset of it, because, because we drop entries with undefined value for the \texttt{song hotttnesss} (\texttt{NaN}).
+We then moved to the full dataset of 1 000 000 songs; however, the analysis only uses a subset of it,  because we drop entries with undefined value for the \texttt{song hotttnesss} (\texttt{NaN}).
 In the end, we worked on a subset of XXX XXX songs.
 
 We retrieved the data from the whole dataset, made available on the ADA cluster, as single json file. Beforehand, we drop entries we decided to not analyse. 

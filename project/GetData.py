@@ -35,6 +35,11 @@ feature = [get_year,
         get_danceability,
         get_duration,
         get_energy,
+        get_artist_name,
+        get_track_id,
+        get_artist_location,
+        get_key,
+        get_key_confidence,
          ]
     
 def LoadData(content):
