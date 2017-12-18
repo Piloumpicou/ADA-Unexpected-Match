@@ -67,7 +67,7 @@ Lyrics analysis, geographical analysis, and few high level features (duration, a
 The analysis is based on two different datasets: the Million Song Dataset (MSD), containing records for 1 000 000 contemporary songs, and the musiXmatch dataset, which contains bag-of-words lyrics for 237 662 out of 1 000 000 songs.
 
 \subsection{The Million Song Dataset}
-Initially, we gained insight of the dataset by working with the official MSD subset which covers 10 000 songs, freely available for download at \url{https://labrosa.ee.columbia.edu/millionsong/pages/getting-dataset}.
+Initially, we gained insight into the dataset by working with the official MSD subset which covers 10 000 songs, freely available for download at \url{https://labrosa.ee.columbia.edu/millionsong/pages/getting-dataset}.
 We then moved to the full dataset of 1 000 000 songs; however, the analysis only uses a subset of it, because, because we drop entries with undefined value for the \texttt{song hotttnesss} (\texttt{NaN}).
 In the end, we worked on a subset of XXX XXX songs.
 
@@ -75,20 +75,24 @@ We retrieved the data from the whole dataset, made available on the ADA cluster,
 This significantly reduces the size of the data, so that the subsequent analysis could be performed locally.
 
 \subsection{The musiXmatch dataset}
-Directly retrieved from \url{https://labrosa.ee.columbia.edu/millionsong/musixmatch}
+The musiXmatch dataset can directly retrieved from \url{https://labrosa.ee.columbia.edu/millionsong/musixmatch}
+There are four different files: 
+\texttt{full\_word\_list.txt} (7 MB) containing the complete list of distinct words in the collected lyrics, \texttt{mxm\_779k\_matches.txt} (85 MB) containing the \texttt{track id}, \texttt{artist name} and \texttt{title} for both MSD and the musiXmatch dataset, \texttt{mxm\_dataset\_train.txt} (100 MB) and \texttt{mxm\_dataset\_test.txt} (13 MB), for which each record contains an MSD \texttt{track id}, a musiXmatch \texttt{track id} and a dictionary mapping word ids of the top-5000 most frequent words to the number of occurrences for this song.
+We use the train set and test set as single dataset, since our analysis is no prediction task per se.
 
-Matched to the MSD by using the \texttt{track\_id}.
-
-Four different files: 
-\texttt{full\_word\_list.txt} (7 MB), \texttt{mxm\_779k\_matches.txt} (85 MB), \texttt{mxm\_dataset\_train.txt} (100 MB) and \texttt{mxm\_dataset\_test.txt} (13 MB).
-
-Use data from train and test set as single dataset, since our analysis no prediction task.
-
-Could match 154 663 tracks with the \texttt{mxm\_779k\_matches} dataset (779 056 songs in total), but in the end, out of 159 430 songs, only 60 146 songs matched with the concatenation of \texttt{mxm\_dataset\_test} and \texttt{mxm\_dataset\_train} dataset.
+The correspondence between the MSD and the musiXmatch dataset is made through the \texttt{track id}s of a song.
+We could match 154 663 tracks with the \texttt{mxm\_779k\_matches} dataset (779 056 songs in total), but in the end, out of 159 430 songs, only 60 146 songs could be matched with the concatenation of the \texttt{mxm\_dataset\_test} and the \texttt{mxm\_dataset\_train} datasets.
 
 \section{Dataset description}
 %summary statistics, maths, main algorithms
 
+Each record of the MSD contains 55 fields. 
+
+\subsection{Song hotttnesss}
+
+\subsection{Release year}
+
+\subsection{Artist's country of origin}
 Matched coordinates to country using reverse geolocation (\texttt{pygeocoder} and \texttt{pygeolib} packages) (35 106 songs with valid coordinates)
 
 Among those songs, there is an unequal repartition between the different countries.
@@ -96,7 +100,7 @@ An overwhelming majority of songs comes from the United States (20 276), followe
 
 
 \section{Results and findings}
-Metric for measuring the popularity of a song based on the \texttt{song\_hotttnesss} field of a song, value between 0 and 1, acoording to the Echo Nest in December 2010, when the dataset was compiled.
+Metric for measuring the popularity of a song based on the \texttt{song\_hotttnesss} field of a song, value between 0 and 1, according to the Echo Nest in December 2010, when the dataset was compiled.
 
 Since the \texttt{song\_hotttnesss} fields can be \texttt{NaN}, it remains unclear whether a value of 0 corresponds to a \texttt{song\_hotttnesss}, or that the feature has not been evaluated for this song. 
 
@@ -258,7 +262,13 @@ musiXmatch limitations: bag-of-words (due to copyright issues)
 
 \begin{thebibliography}{}
 
-\bibitem[\protect\citename{MSD official documentation}]{MSD}\url{https://labrosa.ee.columbia.edu/millionsong}
+\bibitem[\protect\citename{MSD official documentation}]{MSD}
+\url{https://labrosa.ee.columbia.edu/millionsong}
+
+\bibitem[\protect\citename{List of stopwords}]{list_stopwords}
+\url{https://www.ranks.nl/stopwords}\\
+\url{http://www.lextek.com/manuals/onix/stopwords1.html}.
+
 
 \end{thebibliography}
 
