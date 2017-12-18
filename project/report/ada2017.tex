@@ -52,16 +52,20 @@
 \begin{document}
 \maketitle
 \begin{abstract}
-
+%plouf
 \end{abstract}
 
 
 \section{Introduction}
+The Million Song Dataset is a collaboration between the LabROSA and The Echo Nest, and compiles the audio features and metadata for a million popular contemporary tracks. The whole dataset, about 280 GB, was released in 2011, and is freely available. 
 
+In this project, we analysed a few high level features such as the song duration, the artist popularity and country of origin, as well as the music genre. 
+Using the related musiXmatch dataset further allowed us to perform an analysis of the lyrics.
 
-Lyrics analysis, geographical analysis, and few high level features (duration, artist popularity, music genre).
+We briefly present some related work in section 2, and explain how the data was collected in section 3. Section 4 gives an overview of the datasets, and the results of the analysis are presented in sections 5. Finally, we conclude in section 6.
 
 \section{Related work}
+%?
 
 \section{Data collection}
 The analysis is based on two different datasets: the Million Song Dataset (MSD), containing records for 1 000 000 contemporary songs, and the musiXmatch dataset, which contains bag-of-words lyrics for 237 662 out of 1 000 000 songs.
@@ -85,12 +89,37 @@ We could match 154 663 tracks with the \texttt{mxm\_779k\_matches} dataset (779 
 
 \section{Dataset description}
 %summary statistics, maths, main algorithms
-
-Each record of the MSD contains 55 fields. 
-
-\subsection{Song hotttnesss}
+Each record of the MSD contains 55 fields.
+For our analysis, we retrieved only a subset of these fields, namely \texttt{song id}, \texttt{track id}, \texttt{title}, \texttt{year}, \texttt{duration}, \texttt{song hotttnesss}, \texttt{danceability}, \texttt{energy} (song-related features) \texttt{artist id}, \texttt{artist name}, \texttt{artist terms}, \texttt{terms weight}, \texttt{artist latitude},  \texttt{artist longitude}, \texttt{artist location} and \texttt{artist hotttnesss} (artist-related features) 
+(it turned out however that none of the songs had their \texttt{energy} or \texttt{danceability} fields defined, i.e. not set to 0.0).
+What is more, we dropped all entries whose \texttt{song hotttnesss} was \texttt{NaN}.
 
 \subsection{Release year}
+The MSD was put together in 2010
+The oldest songs in the dataset dates back to 1925, but most songs were sampled between 1995 and 2010.
+
+\begin{figure}[h!]
+\centering
+\captionsetup{width=1.0\textwidth}
+\includegraphics[trim={2.5cm 0cm 0cm 1cm},clip, scale=0.26]{images/"release_year_distribution".png}
+\caption{Release years distribution}
+\label{fig:song_duration}
+\end{figure}
+
+\subsection{Song hotttnesss}
+Our metric for measuring the popularity of a song based on the \texttt{song hotttnesss} field of a song, value between 0.0 and 1.0, according to the Echo Nest in December 2010, when the dataset was compiled.
+Since the \texttt{song hotttnesss} fields can be \texttt{NaN}, it remains unclear whether a value of 0.0 corresponds to a nonexistent \texttt{song hotttnesss}, or if the feature has not been evaluated for this song.
+
+In Figure \ref{fig:song_hotttnesss_distribution}, we plot the \texttt{song hotttnesss} distribution rounded to 2 decimals, excluding 0 values. 
+The shape of this distribution is rather unusual: the right part of the curve is smooth, while the left one is completely erratic.
+
+\begin{figure}[h!]
+\centering
+\captionsetup{width=1.0\textwidth}
+\includegraphics[trim={2.5cm 0cm 0cm 1cm},clip, scale=0.26]{images/"song_hotttnesss_distribution".png}
+\caption{Song hotttnesss distribution}
+\label{fig:song_hotttnesss_distribution}
+\end{figure}
 
 \subsection{Artist's country of origin}
 Matched coordinates to country using reverse geolocation (\texttt{pygeocoder} and \texttt{pygeolib} packages) (35 106 songs with valid coordinates)
@@ -100,17 +129,12 @@ An overwhelming majority of songs comes from the United States (20 276), followe
 
 
 \section{Results and findings}
-Metric for measuring the popularity of a song based on the \texttt{song\_hotttnesss} field of a song, value between 0 and 1, according to the Echo Nest in December 2010, when the dataset was compiled.
-
-Since the \texttt{song\_hotttnesss} fields can be \texttt{NaN}, it remains unclear whether a value of 0 corresponds to a \texttt{song\_hotttnesss}, or that the feature has not been evaluated for this song. 
-
-Also, strange gap between 0.0 and 0.2: almost no song has a \texttt{song\_hotttnesss} below 0.2.
-%plot of song hotttnesss distribution
 
 
 \subsection{Artist popularity}
 There is a correlation between the \texttt{song\_hotttnesss} and the corresponding artist's \texttt{artist\_hotttnesss}.
 Hot songs tend to be associated to hot artist, but it turns out the hotttessst artists do not make the hotttessst songs.
+Notice that the gap between 0.0 and 0.2: as mentioned before, almost no song has a \texttt{song\_hotttnesss} below 0.2.
 
 \begin{figure}[h!]
 \centering
@@ -120,11 +144,7 @@ Hot songs tend to be associated to hot artist, but it turns out the hotttessst a
 \label{fig:artist_hotttnesss}
 \end{figure}
 
-
-
 \subsection{Song duration}
-First remark: MSD does not contain records of the great symphonies like XXX. 
-
 Despite some outliers - the shortest and longest "songs" are 0.67 seconds respectively 3007 seconds (50min 7s) long - close to 75\% (73.47\%) of the songs are 2 to 5 minutes long, a very common duration for contemporary music tracks.
 
 \begin{figure}[h!]
@@ -135,6 +155,18 @@ Despite some outliers - the shortest and longest "songs" are 0.67 seconds respec
 \label{fig:song_duration}
 \end{figure}
 
+Figure \ref{fig:song_duration_over_years} displays the average song duration for different threshold intervals from 1925 to 2010. 
+Unfortunately, as can be seen by the very irregular values before 1960, there is most likely not enough data before 1960 to make any reasonable conclusion regarding that period. 
+We can nonetheless make the following observations:
+\begin{enumerate}
+\itemsep 0mm
+\item The top songs have a duration in a tight interval
+\item Over the years, the average song duration of the top songs displays less and less variations
+\item In the last years, the average top songs duration dropped below the other average song durations
+\end{enumerate}
+
+This suggests that in order to be rated "hot", songs tend to comply more and more to a standard duration.
+
 \begin{figure}[h!]
 \centering
 \captionsetup{width=1.0\textwidth}
@@ -143,41 +175,37 @@ Despite some outliers - the shortest and longest "songs" are 0.67 seconds respec
 \label{fig:song_duration_over_years}
 \end{figure}
 
-Three main observations:
-\begin{enumerate}
-\itemsep 0mm
-\item top songs have a duration in a tight interval
-\item over the years, the average song duration of the top songs displays less and less variations
-\item in 2010, the average top songs duration is below the average
-\end{enumerate}
-
-
-
 \subsection{Music genre}
-This analysis is based on the \texttt{artist\_terms} of a song, which can be seen as music genre tags given by the Echo Nest.
-There are at least 6 482 distinct \texttt{artist\_terms} used in the MSD, including all possible variations such as "rap rock", "funk rock", funk rap", "jazz funk", "jazz rap" or "jazz rock".
-Actually, the most recurrent \texttt{artist\_terms} do correspond to music genres, while the least common ones, used for a single song for instance, are more like miscellaneous tags.
+This analysis is based on the \texttt{artist terms} of a song, which can be seen as music genre tags given by the Echo Nest.
+There are at least 6 482 distinct \texttt{artist terms} used in the MSD, including all possible variations such as "rap rock", "funk rock", funk rap", "jazz funk", "jazz rap" or "jazz rock".
+Actually, the most recurrent \texttt{artist terms} do correspond to music genres, while the least common ones, used for a single song for instance, are more like miscellaneous tags.
+The dataset is largely dominated by the rock, pop and electronic genre.
 
-The dataset is largely dominated by the rock, pop and electronic genre.\\
-\begin{tabular}{|lr|}
-\hline
-\texttt{artist\_terms} & occurrences\\
-\hline
-rock               & 131337\\
-pop                 & 98814\\
-electronic          & 96684\\
-alternative rock    & 75882\\
-alternative         & 69619\\
-indie               & 62706\\
-hip hop             & 58751\\
-jazz                & 57699\\
-indie rock          & 57193\\
-united states       & 55522\\
-pop rock            & 53863\\ 
-punk                & 53043\\
-\hline
-\end{tabular}
-\captionof{table}{Top-12 \texttt{artist\_terms} (non-weighted)}
+In order to determine which music genres are the most popular, we weighted all the \texttt{artist terms} of songs with a \texttt{song hotttnesss} greater or equal to 0.9 by their corresponding \texttt{artist term weights}. 
+We then normalized the result, to obtain the "proportion" of the most popular music genres.
+For a lower threshold, the ranking is essentially very similar: only the weights decrease, since more songs are included, and hence more \texttt{artist terms} as well.
+%Ideally, group artist terms together, but not obvious how to do that
+
+%\begin{tabular}{|lr|}
+%\hline
+%\texttt{artist\_terms} & occurrences\\
+%\hline
+%rock               & 131337\\
+%pop                 & 98814\\
+%electronic          & 96684\\
+%alternative rock    & 75882\\
+%alternative         & 69619\\
+%indie               & 62706\\
+%hip hop             & 58751\\
+%jazz                & 57699\\
+%indie rock          & 57193\\
+%united states       & 55522\\
+%pop rock            & 53863\\ 
+%punk                & 53043\\
+%\hline
+%\end{tabular}
+%\captionof{table}{Top-12 \texttt{artist\_terms} (non-weighted)}
+
 
 \begin{tabular}{|lrr|}
 \hline
@@ -200,21 +228,24 @@ punk 				& 1.166998 &	149\\
 \end{tabular}
 \captionof{table}{Top-12 \texttt{artist\_terms} (weighted) for a \texttt{song\_hotttnesss} threshold of 0.9 (500 songs), and a minimum number of occurrences of 0}
 
-%for a lower threshold, the ranking is essentially very similar, the weights decrease, since more songs are included, and hence more artist terms as well
 
  	
 \subsection{Lyrics}
-Initially, we analysed the lyrics by considering all the words in the top-5000 list of the musiXmatch dataset. In a second step, we remove the stopwords from the analysis.
+Initially, we analysed the lyrics by considering all the words in the top-5000 list of the musiXmatch dataset. In a second step, we exclude the stopwords from the analysis.
 
 \subsubsection{With stopwords}
 The main observation resulting from this analysis is that the frequency of English words in lyrics differ from the frequency of English words in prose, particularly regarding the use of pronouns.
 While 'the' is the number one word in term of frequency in English prose, it is "only" ranked third for a \texttt{song threshold} greater than 0.8, behind 'I' and 'you', which are 11th respectively 14th in English prose.
 
 The popular songs hence seem to be rather about 'I', 'you' and 'we', and less about 'they' or 'it'.
-Although 'it' has a stable ranking of 8 against 11 in English prose, 'they' (ranked 21st in English prose), systematically scores lower than 'we' (ranked 24th in English prose) in the lyrics.
+Although 'it' has a stable ranking of 8th against 11th in English prose, 'they' (ranked 26st in English prose) in fact systematically scores lower than 'we' (ranked 27th in English prose) in the lyrics.
 
 In Figure \ref{fig:word_frequency_stopwords}, we show the frequency of the English pronouns in the lyrics as a function of the \texttt{song hotttnesss} threshold.
 We also plot the frequency of the stopword 'the', whose evolution we expect does not very much across songs, independently of their popularity, and which can then serve as a baseline.
+Interestingly, while the frequency of 'I' and 'we' keeps increasing, the one for 'you' suddenly drops past a \texttt{song hotttnesss} threshold of 0.9.
+
+%notice did not count contractions of pronouns and verbs such as 'you'll', 'you've' etc.
+
 \begin{figure}[h!]
 \centering
 \captionsetup{width=1.0\textwidth}
