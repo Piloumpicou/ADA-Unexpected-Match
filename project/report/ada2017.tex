@@ -71,7 +71,8 @@ Using the related musiXmatch dataset further allowed us to perform an analysis o
 We briefly present some related work in section 2, and explain how the data was collected in section 3. Section 4 gives an overview of the datasets, and the results of the analysis are presented in sections 5. Finally, we conclude in section 6.
 
 \section{Related work}
-%?
+Several other projects have been conducted on the MSD, many of them being machine learning-oriented ones, with the task of predicting a next song popularity.
+%links in reference?
 
 \section{Data collection}
 The analysis is based on two different datasets: the Million Song Dataset, containing records for 1 000 000 contemporary songs, and the musiXmatch dataset, which contains bag-of-words lyrics (due to copyright issues) for 237 662 out of 1 000 000 songs.
@@ -98,6 +99,8 @@ What is more, we dropped all entries whose \texttt{song hotttnesss} was \texttt{
 \subsubsection{Release year}
 The oldest songs in the dataset dates back to 1925, but most songs were sampled between 1995 and 2010.
 
+
+%maybe remove
 \begin{figure}[h!]
 \centering
 \captionsetup{width=1.0\textwidth}
@@ -128,7 +131,6 @@ The correspondence between the MSD and the musiXmatch dataset is made through th
 We could match 154 663 tracks with the \texttt{mxm\_779k\_matches} dataset (779 056 songs in total), but in the end, out of 159 430 songs, only 60 146 songs could be matched with the concatenation of the \texttt{mxm\_dataset\_test} and the \texttt{mxm\_dataset\_train} datasets.
 
 \section{Results and findings}
-
 
 \subsection{Music genre}
 This analysis is based on the \texttt{artist terms} of a song, which can be seen as music genre tags given by the Echo Nest.
@@ -287,7 +289,6 @@ Similarly to the music genre, English should be the language of choice when it c
 
 
 \begin{thebibliography}{}
-
 \bibitem[\protect\citename{MSD official documentation}]{MSD}
 \url{https://labrosa.ee.columbia.edu/millionsong}
 
