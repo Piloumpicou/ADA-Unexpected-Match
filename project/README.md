@@ -97,3 +97,21 @@ For the third milestone, we will apply the analysis of the Million Song Dataset 
 After getting an overview of the subst, we realized that our second research question, which is about the geographical origin of these songs, is maybe not so relevant. This is because the songs are not from a worldwide sample, but come mostly from the US or Europe, although there might have been some sort of propagation between the different western countries.
 
 Concerning the Million Song Dataset subset we have been using so far, we will probably continue using it when trying out some new approach before apply it on the whole dataset, because we can then get results more quickly this way.
+
+# Contributions
+
+Jean-Thomas Furrer: 
+- came up with the project idea
+- worked on the preliminary analysis on the MSD subset
+- 
+
+Benjamin Girard:
+- dealed with the cluster and performed the MSD data collection on the cluster
+- proofread the report
+-
+
+Emily Hentgen: 
+- worked on the preliminary analysis on the MSD subset
+- worked on the data analysis on the MSD
+- wrote the report
+- 
