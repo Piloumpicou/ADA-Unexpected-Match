@@ -1871,3 +1871,237 @@
 36.35113	-89.81702	United States	Wardell
 35.52069	-84.36354	United States	Madisonville
 33.43561	-90.82161	United States	Leland
+41.52493	-88.08459	United States	Joliet
+38.823502	-75.923813	United States	Easton
+34.1649	-118.397	United States	Los Angeles
+51.70973	-0.09200999999999901	United Kingdom	Goff's Oak
+18.7679	-70.16174	Dominican Republic	None
+43.45646	-76.51119	United States	Oswego
+54.57305	-1.23763	United Kingdom	Middlesbrough
+33.48358	-89.73584	United States	Winona
+20.09881	-98.71508	Mexico	Pachuca de Soto
+32.00255	34.75564	Israel	Holon
+51.33389	6.562299999999999	Germany	Krefeld
+48.24159	-122.37238	United States	Stanwood
+40.26134	-79.71545	United States	Herminie
+54.68208	-1.221819999999999	United Kingdom	Hartlepool
+37.18422	-5.779169999999999	Spain	Utrera
+26.15467	-80.1389	United States	Wilton Manors
+30.5497	-92.5136	United States	Basile
+32.79533	-95.45168	United States	Quitman
+21.33422	-158.0819	United States	Kapolei
+43.0837	-73.78458	United States	Saratoga Springs
+44.05551	-64.68844	Canada	Brooklyn
+48.30425	14.28815	Austria	Linz
+29.54047	-90.33607	United States	Cut Off
+33.11464	-90.0528	United States	Lexington
+50.81877	-0.51346	United Kingdom	Rustington
+46.05473	9.25889	Italy	Acquaseria
+42.09643	-87.93677	United States	Prospect Heights
+51.50883	-3.57826	United Kingdom	Bridgend
+44.72979	11.08014	Italy	Ravarino
+37.55712	126.97738	South Korea	Seoul
+51.76174	19.46801	Poland	Łódź
+38.40901	-121.36562	United States	Elk Grove
+33.65596	-84.44895	United States	College Park
+34.94825	-81.93487	United States	Spartanburg
+43.66633	10.63822	Italy	Pontedera
+36.38418	-85.32281	United States	Livingston
+51.17964	14.42426	Germany	Bautzen
+37.4631	-122.42932	United States	Half Moon Bay
+42.28782	-87.9523	United States	Libertyville
+35.48869	-120.66906	United States	Atascadero
+38.64412	-83.75938	United States	Maysville
+28.04419	-81.94786	United States	Lakeland
+36.38782	-86.44622	United States	Gallatin
+33.30288	-111.84084	United States	Chandler
+33.65272	-91.01055	United States	Benoit
+20.87575	-100.88395	Mexico	None
+41.60374	-74.18038	United States	Wallkill
+23.59975	121.02381	Taiwan	None
+41.16399	28.96406	Turkey	None
+34.10982	-118.19232	United States	Los Angeles
+-13.15192	27.85254	Zambia	None
+42.97877	-82.40336	Canada	Sarnia
+41.48352	-74.41552	United States	Middletown
+37.167931	-95.845016	United States	Independence
+33.48935	-80.86472	United States	Orangeburg
+36.90533	-104.439	United States	Raton
+35.78933	-78.78117	United States	Cary
+62.198448	17.55142	Sweden	None
+48.39575	10.00099	Germany	Neu-Ulm
+40.93478	-73.99558	United States	Bergenfield
+36.49905	-80.60688	United States	Mount Airy
+36.56754	-119.61078	United States	Selma
+37.38201	-81.64936	United States	Welch
+44.68358	-115.45397	United States	Cascade
+6.65512	-4.71976	Côte d'Ivoire	Dimbokro
+50.828	3.26505	Belgium	Kortrijk
+40.66404	-73.70853	United States	Valley Stream
+34.167881	-111.930702	United States	Black Canyon City
+46.49643	-66.40942	Canada	Porter Cove
+36.59586	-89.52839	United States	New Madrid
+52.37633	-1.25615	United Kingdom	Rugby
+54.98281	-1.478699999999999	United Kingdom	Jarrow
+33.68688	-117.82534	United States	Irvine
+32.89861	-84.32842	United States	Thomaston
+54.63651	-6.812859999999999	United Kingdom	None
+41.3113	-75.93509	United States	Shavertown
+34.60738	-86.97976	United States	Decatur
+32.3457	-89.32583	United States	Lake
+28.96739	-98.47886	United States	Pleasanton
+51.60643	-0.37728	United Kingdom	Pinner
+40.54416	-74.36303	United States	Metuchen
+48.37033	10.89789	Germany	Augsburg
+13.75333	100.50482	Thailand	Bangkok
+-1.950099999999999	30.05877	Rwanda	Kigali
+43.4658	12.23545	Italy	Città di Castello
+43.0958	-75.24276	United States	Utica
+34.86738	-91.18847	United States	Brinkley
+51.46523	-0.0704	United Kingdom	London
+32.2985	-64.79184	Bermuda	Pembroke
+42.06538	-87.93538	United States	Mount Prospect
+37.2756	-76.70972	United States	Williamsburg
+37.31884	-122.02924	United States	Cupertino
+34.2606	-118.28554	United States	Los Angeles
+33.98897	-81.07328	United States	West Columbia
+40.51851	-75.77648	United States	Kutztown
+53.04702	8.62929	Germany	Delmenhorst
+34.72912	-86.58496	United States	Huntsville
+41.79891	-87.95492	United States	Clarendon Hills
+-8.65666	115.22152	Indonesia	None
+37.47041	-82.34883	United States	Kimper
+51.34835	-2.25177	United Kingdom	Bradford-on-Avon
+40.74568	-74.25778	United States	South Orange
+42.3519	-71.14566	United States	Boston
+36.54891	-86.50662	United States	Portland
+40.90935	-72.35508	United States	Water Mill
+38.9309	-76.8912	United States	Hyattsville
+38.34408	-0.48047000000000006	Spain	Alacant
+52.67403	0.95091	United Kingdom	Dereham
+51.57486	6.512179999999999	Germany	Alpen
+35.92577	-85.46394	United States	Sparta
+35.52069	-84.36354	United States	Madisonville
+40.01549	-90.43295	United States	Beardstown
+32.6505	-85.38065	United States	Opelika
+37.98081	-122.02519	United States	Concord
+-15.77564	-47.79675	Brazil	None
+51.71012	-3.69781	United Kingdom	Resolven
+46.49499	11.35443	Italy	Bolzano
+44.39082	-88.74024	United States	New London
+18.11449	-66.16959	Puerto Rico	Cayey
+64.32235	-22.07443	Iceland	Akranes
+22.44608	69.9077	India	Bed
+39.60343	-74.21016	United States	Long Beach Township
+51.2653	0.5180399999999991	United Kingdom	Maidstone
+39.63564	-74.80397	United States	Hammonton
+36.59193	-82.22127	United States	Bristol
+46.08914	-122.93609	United States	Rainier
+37.07692	15.27957	Italy	Siracusa
+48.3654	-119.57959	United States	Okanogan
+35.87377	-78.79119	United States	Morrisville
+54.62805	-3.55335	United Kingdom	Workington
+43.55292	10.32	Italy	Livorno
+42.50018	-70.86521	United States	Marblehead
+41.67905	-86.25404	United States	South Bend
+35.80236	-83.52293	United States	Sevierville
+46.50361	-64.01676	Canada	Richmond
+40.49725	-74.42233	United States	Highland Park
+40.0326	-78.50517	United States	Bedford
+53.45495	-3.005939999999999	United Kingdom	Bootle
+36.35139	-82.21628	United States	Elizabethton
+59.31102	18.16357	Sweden	None
+35.09813	135.71893	Japan	Kita-ku
+33.0972	-89.5092	United States	Ethel
+41.65173	-0.8813199999999991	Spain	Zaragoza
+-51.80058	-58.72104	Falkland Islands (Islas Malvinas)	None
+20.4667	-102.0667	Mexico	None
+44.04981	20.91079	Serbia	Kragujevac
+47.40223	8.12927	Switzerland	Rupperswil
+60.00886	123.83993	Russia	None
+35.31057	-120.82696	United States	Baywood-Los Osos
+32.20703	-90.14988	United States	Florence
+26.14574	-80.47753	United States	Parkland
+45.6454	-84.47613	United States	Cheboygan
+50.80355	13.56599	Germany	Hartmannsdorf-Reichenau
+30.57015	-97.40965	United States	Taylor
+50.52629	-3.60734	United Kingdom	Newton Abbot
+31.1689	-100.077148	United States	Eden
+43.12532	5.930299999999999	France	Toulon
+31.54991	74.3273	Pakistan	Lahore
+10.3667	-66.9333	Venezuela	San Antonio de Los Altos
+34.50942	-93.05231	United States	Hot Springs
+35.27958	-84.76192	United States	Charleston
+51.23848	-2.993669999999999	United Kingdom	Burnham-on-Sea
+14.59971	-61.07597	Martinique	Fort-de-France
+51.44268	3.57262	Netherlands	Vlissingen
+-34.90101	138.85455	Australia	Lobethal
+40.71578	-73.84169	United States	None
+35.74595	-89.53176	United States	Ripley
+35.03731	-90.06146	United States	Memphis
+43.32113	-76.41484	United States	Fulton
+33.98585	-88.48955	United States	Amory
+35.6605	-91.9204	United States	Drasco
+35.63649	139.63449	Japan	Setagaya-ku
+35.16018	-84.87532	United States	Cleveland
+40.73678	-73.88106	United States	None
+40.994709	-77.604538	United States	Howard
+-16.49901	-68.14626	Bolivia	La Paz
+35.5218	-90.35823	United States	Tyronza
+40.19316	-85.38173	United States	Muncie
+40.19426	-92.57199	United States	Kirksville
+37.76789	-81.41923	United States	Bolt
+40.29805	-111.69541	United States	Orem
+34.74293	-101.85259	United States	Happy
+52.05306	-2.7223	United Kingdom	Hereford
+30.23218	-92.82212	United States	Welsh
+41.61083	-87.64458	United States	Harvey
+41.86177	-103.66276	United States	Scottsbluff
+44.13897	12.23865	Italy	Cesena
+39.53476	-74.4874	United States	Port Republic
+30.73029	-91.97563	United States	Lebeau
+35.91533	-81.54009	United States	Lenoir
+38.71361	-77.79551	United States	Warrenton
+33.47015	-94.39471	United States	New Boston
+40.39696	-91.38456	United States	Keokuk
+-23.64126	-70.39938	Chile	Antofagasta
+42.31477	-71.08678	United States	Boston
+51.749	-0.47508000000000006	United Kingdom	Hemel Hempstead
+-46.41185	168.35217	New Zealand	Invercargill
+28.46978	-98.17944	United States	Three Rivers
+53.74148	-1.68589	United Kingdom	Gomersal
+44.31803	-69.77621	United States	Augusta
+32.82225	-88.15826	United States	Gainesville
+49.98266	14.76065	Czechia	Louňovice
+30.5066	-97.82189	United States	Cedar Park
+60.4528	22.25155	Finland	Turku
+47.39038	0.68971	France	Tours
+34.76898	-89.44857	United States	Holly Springs
+-37.06542	174.94392	New Zealand	Papakura
+39.95346	-75.16318	United States	Philadelphia
+49.384258	-84.756271	Canada	None
+39.90601	116.38791	China	Beijing
+32.22032	-98.20195	United States	Stephenville
+39.38417	9.04476	Italy	Monastir
+42.50172	12.88512	Italy	Poggio Bustone
+38.01582	-121.8197	United States	Antioch
+38.15371	-78.84245	United States	Crimora
+11.2915	-60.53231	Trinidad and Tobago	None
+20.4167	-103.6833	Mexico	Villa Corona
+36.8428	-83.18374	United States	Evarts
+37.77916	-122.42005	United States	San Francisco
+36.8428	-83.18374	United States	Evarts
+31.03562	-91.97798	United States	Moreauville
+35.20725	-101.83389	United States	Amarillo
+29.56796	-98.2721	United States	Schertz
+40.66351	-74.21146	United States	Elizabeth
+49.22864	-0.29909	France	Blainville-sur-Orne
+31.89746	-97.64086	United States	Clifton
+35.5953	-89.26212	United States	Brownsville
+41.47723	-88.43347	United States	Morris
+52.67383	-0.6593799999999991	United Kingdom	None
+32.60746	-85.48173	United States	Auburn
+40.84713	-73.29144	United States	Commack
+40.79301	-74.47713	United States	Morristown
+40.67855	-73.58896	United States	Roosevelt
+41.11438	-74.14964	United States	Suffern
