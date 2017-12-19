@@ -74,7 +74,7 @@ We briefly present some related work in section 2, and explain how the data was 
 %?
 
 \section{Data collection}
-The analysis is based on two different datasets: the Million Song Dataset, containing records for 1 000 000 contemporary songs, and the musiXmatch dataset, which contains bag-of-words lyrics for 237 662 out of 1 000 000 songs.
+The analysis is based on two different datasets: the Million Song Dataset, containing records for 1 000 000 contemporary songs, and the musiXmatch dataset, which contains bag-of-words lyrics (due to copyright issues) for 237 662 out of 1 000 000 songs.
 
 \subsection{The Million Song Dataset}
 Initially, we gained insight into the dataset by working with the official MSD subset which covers 10 000 songs, freely available for download at \url{https://labrosa.ee.columbia.edu/millionsong/pages/getting-dataset}.
@@ -85,7 +85,7 @@ We retrieved the data from the whole dataset, made available on the ADA cluster,
 This significantly reduces the size of the data, so that the subsequent analysis could be performed locally.
 
 \subsection{The musiXmatch dataset}
-The musiXmatch dataset can directly be downloaded from \url{https://labrosa.ee.columbia.edu/millionsong/musixmatch}.
+The musiXmatch dataset can directly be downloaded  \url{https://labrosa.ee.columbia.edu/millionsong/musixmatch}.
 
 \section{Dataset description}
 %summary statistics, maths, main algorithms
@@ -226,8 +226,6 @@ This suggests that in order to be rated "hot", songs tend to comply more and mor
 \label{fig:song_duration_over_years}
 \end{figure}
 
-
- 	
 \subsection{Lyrics}
 Initially, we analysed the lyrics by considering all the words in the top-5000 list of the musiXmatch dataset. In a second step, we exclude the stopwords from the analysis.
 
@@ -236,11 +234,10 @@ The main observation resulting from this analysis is that the frequency of Engli
 While 'the' is the number one word in term of frequency in English prose, it is "only" ranked third for a \texttt{song hotttnesss} threshold greater than 0.8, behind 'I' and 'you', which are 11th respectively 14th in English prose.
 The popular songs hence seem to be rather about 'I', 'you' and 'we', and less about 'they' or 'it'.
 Although 'it' has a stable ranking of 8th against 11th in English prose, 'they' (ranked 26st in English prose) in fact systematically scores lower than 'we' (ranked 27th in English prose) in the lyrics.
+One explanation is that the recurrent use of such pronouns increases the level of identification of the listener with the content of the song.
 In Figure \ref{fig:word_frequency_stopwords}, we show the frequency of the English pronouns in the lyrics as a function of the \texttt{song hotttnesss} threshold.
 We also plot the frequency of the stopword 'the', whose evolution we expect does not very much across songs, independently of their popularity, and which can then serve as a baseline.
-Interestingly, while the frequency of 'I' and 'we' keeps increasing, the one for 'you' suddenly drops past a \texttt{song hotttnesss} threshold of 0.9.
-
-%notice did not count contractions of pronouns and verbs such as 'you'll', 'you've' etc.
+Interestingly, while the frequency of 'I' and 'we' keeps increasing, the one for 'you' suddenly drops past a \texttt{song hotttnesss} threshold of 0.9 (note that contractions of pronouns and verbs such as 'you'll', 'you've' etc were not counted).
 
 \begin{figure}[h!]
 \centering
@@ -252,14 +249,16 @@ Interestingly, while the frequency of 'I' and 'we' keeps increasing, the one for
 
 \subsubsection{Without stopwords}
 It is not always obvious to determine whether a word is a stopword or not. We heuristically compiled a list of stopwords using the freely-available lists of stopwords at \url{https://www.ranks.nl/stopwords} and \url{http://www.lextek.com/manuals/onix/stopwords1.html}.
-When ignoring the stopwords in the ranking, we can point out three characteristics that we tend to encounter in popular songs (although these are typically not present all at the same time in hot rated songs):
+When ignoring the stopwords in the ranking, we can point out three characteristics of popular songs (although these are typically not present all at the same time in hot rated songs):
 \begin{enumerate}
 \itemsep 0mm
 \item The presence of the specific words 'love', 'time' and 'feel', which actually keep ranking among the top places for high \texttt{song hotttnesss} thresholds as well as low ones
-\item The non-negligible use of the interjections 'yeah' and 'oh' (although the frequency of 'oh' drops above a threshold of 0.9)
+\item The non-negligible use of the interjections 'yeah' and 'oh' 
+%(although the frequency of 'oh' drops above a threshold of 0.9)
 \item The use of informal speech like 'gonna', strengthened by the fact that it is often found together with 'yeah'
 \end{enumerate}
-While 'yeah', oh' or 'gonna' could actually be considered as stopwords, it is interesting to see they are the second "type" of words to rank top after the stopwords.
+This analysis is nonetheless somewhat limited by the bag-of-words nature of the musiXmatch dataset. Still, while 'yeah', oh' or 'gonna' could actually be considered as stopwords, it is interesting to see they are the second "type" of words to rank top after the stopwords compiled in our list.
+
 
 \subsubsection{Language and artist's country of origin}
 We matched the \texttt{artist latitude} and \texttt{artist longitude} of 35 106 songs with valid coordinates to a country using reverse geolocation.  %(\texttt{pygeocoder} and \texttt{pygeolib} packages)
@@ -280,11 +279,7 @@ By checking the top songs from non Anglo-Saxon countries such as Sweden, Denmark
 
 	
 \section{Conclusions}
-%MSD: unequal distribution of songs regarding countries
-%musiXmatch limitations: bag-of-words (due to copyright issues)
-
-%...
-
+In this project, we explored several song features using the Million Song Dataset. The aim was to determine to which extent they were linked to the popularity of a song.
 Regarding the music genre, focusing on rock or pop seems to have the advantage of reaching a large audience.
 Moreover, since the most popular songs are not symphony-like compositions, the song duration should be from 2 to 7 minutes, preferably around 4 minutes (after all, fitting on the radio is a plus for promotion).
 Concerning the artist popularity, not being "hot" yet will not significantly impact the chances to produce "hot" song: not-so-hot artists have as much chances to produce a "hot" song that the "hotttessst" ones, and the "hotttessst" songs are not necessarily produced by the "hotttessst" artists.
