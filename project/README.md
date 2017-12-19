@@ -103,15 +103,17 @@ Concerning the Million Song Dataset subset we have been using so far, we will pr
 Jean-Thomas Furrer: 
 - came up with the project idea
 - worked on the preliminary analysis on the MSD subset
-- 
+- worked on the Taste Profile dataset and wrote the report
+- will work on the final presentation
 
 Benjamin Girard:
-- dealed with the cluster and performed the MSD data collection on the cluster
+- dealed with the cluster
+- performed all the MSD data collection on the cluster
 - proofread the report
--
+- will work on the final presentation
 
 Emily Hentgen: 
 - worked on the preliminary analysis on the MSD subset
-- worked on the data analysis on the MSD
+- worked on the data analysis on the MSD and musiXmatch dataset
 - wrote the report
-- 
+- will work on the final presentation
