@@ -103,7 +103,7 @@ Concerning the Million Song Dataset subset we have been using so far, we will pr
 Jean-Thomas Furrer: 
 - came up with the project idea
 - worked on the preliminary analysis on the MSD subset
-- worked on Taste Profile dataset
+- worked on the Taste Profile dataset and wrote the report
 - will work on the final presentation
 
 Benjamin Girard:
