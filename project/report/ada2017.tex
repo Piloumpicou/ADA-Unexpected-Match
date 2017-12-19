@@ -14,7 +14,7 @@
 %%e.agirre@ehu.es or Sergi.Balari@uab.es
 %% and that of ACL 08 by Joakim Nivre and Noah Smith
 
-\documentclass[11pt]{article}
+\documentclass[10pt]{article}
 \usepackage{acl2014}
 \usepackage{times}
 \usepackage{url}
@@ -59,7 +59,6 @@ Do some aspects beside the audio features themselves make a song popular?
 We explore this question in this project, with an analysis based on the Million Song Dataset.
 \end{abstract}
 
-
 \section{Introduction}
 The Million Song Dataset (MSD) is a collaboration between the LabROSA and The Echo Nest, released in 2011 and freely available.
 With about 280 GB, it compiles the audio features and metadata for a million popular contemporary tracks. 
@@ -75,18 +74,10 @@ Several other projects have been conducted on the MSD, many of them being machin
 %links in reference?
 
 \section{Data collection}
-The analysis is based on two different datasets: the Million Song Dataset, containing records for 1 000 000 contemporary songs, and the musiXmatch dataset, which contains bag-of-words lyrics (due to copyright issues) for 237 662 out of 1 000 000 songs.
-
-\subsection{The Million Song Dataset}
-Initially, we gained insight into the dataset by working with the official MSD subset which covers 10 000 songs, freely available for download at \url{https://labrosa.ee.columbia.edu/millionsong/pages/getting-dataset}.
-We then moved to the full dataset of 1 000 000 songs; however, the analysis only uses a subset of it: we do not consider entries with undefined value for the \texttt{song hotttnesss} (\texttt{NaN}).
-In the end, we worked on a subset of 159 430 songs.
+The analysis is based on three different datasets: the Million Song Dataset, containing records for 1 000 000 contemporary songs, and the musiXmatch dataset, which contains bag-of-words lyrics (due to copyright issues) for 237 662 out of 1 000 000 songs, and the Taste Profile dataset.
 
 We retrieved the data from the whole dataset, made available on the ADA cluster, as single json file. Beforehand, we drop entries we decided to not analyse. 
 This significantly reduces the size of the data, so that the subsequent analysis could be performed locally.
-
-\subsection{The musiXmatch dataset}
-The musiXmatch dataset can directly be downloaded  \url{https://labrosa.ee.columbia.edu/millionsong/musixmatch}.
 
 \section{Dataset description}
 %summary statistics, maths, main algorithms
@@ -94,11 +85,10 @@ The musiXmatch dataset can directly be downloaded  \url{https://labrosa.ee.colum
 Each record of the MSD contains 55 fields.
 For our analysis, we retrieved only a subset of these fields, namely \texttt{song id}, \texttt{track id}, \texttt{title}, \texttt{year}, \texttt{duration}, \texttt{song hotttnesss}, \texttt{danceability}, \texttt{energy} (song-related features) \texttt{artist id}, \texttt{artist name}, \texttt{artist terms}, \texttt{terms weight}, \texttt{artist latitude},  \texttt{artist longitude}, \texttt{artist location} and \texttt{artist hotttnesss} (artist-related features) 
 (it turned out however that none of the songs had their \texttt{energy} or \texttt{danceability} fields defined, i.e. not set to 0.0).
-What is more, we dropped all entries whose \texttt{song hotttnesss} was \texttt{NaN}.
+What is more, we dropped all entries whose \texttt{song hotttnesss} was \texttt{NaN}, which means that in the end, we worked on a subset of 553 068 songs.
 
 \subsubsection{Release year}
-The oldest songs in the dataset dates back to 1925, but most songs were sampled between 1995 and 2010.
-
+The songs in the dataset range over almost a century: the oldest one dates back to 1922, and the most recent one is of 2011. Most songs however were sampled between 1995 and 2010.
 
 %maybe remove
 \begin{figure}[h!]
@@ -128,63 +118,21 @@ The musiXmatch dataset is a collection of four different files:
 We use the train set and test set as single dataset, since our analysis is no prediction task per se.
 
 The correspondence between the MSD and the musiXmatch dataset is made through the \texttt{track id}s of a song.
-We could match 154 663 tracks with the \texttt{mxm\_779k\_matches} dataset (779 056 songs in total), but in the end, out of 159 430 songs, only 60 146 songs could be matched with the concatenation of the \texttt{mxm\_dataset\_test} and the \texttt{mxm\_dataset\_train} datasets.
+We could match 467 366 tracks with the \texttt{mxm\_779k\_matches} dataset (779 056 songs in total), but in the end, out of 467 366 songs, only 162 125 songs could be matched with the concatenation of the \texttt{mxm\_dataset\_test} and the \texttt{mxm\_dataset\_train} datasets.
+The dataset can directly be downloaded  \url{https://labrosa.ee.columbia.edu/millionsong/musixmatch}.
 
+\subsection{The Taste Profile dataset}
+This dataset contains real triplets such a form : (user, song, play counts) collected from undisclosed partners of the Labrosa laboratory. All songs are  matching with those in our main dataset. The collection is about 1'019'318 users, having listened to 384'546 songs, all of this in 48'373'586 triplets. It consists of one single \texttt{train\_triplets.txt} file (2.79 GB).
 \section{Results and findings}
 
 \subsection{Music genre}
 This analysis is based on the \texttt{artist terms} of a song, which can be seen as music genre tags given by the Echo Nest.
 There are at least 6 482 distinct \texttt{artist terms} used in the MSD, including all possible variations such as "rap rock", "funk rock", funk rap", "jazz funk", "jazz rap" or "jazz rock".
-The most recurrent \texttt{artist terms} (e.g. 'rock', 'pop', ...) actually do correspond to music genres, while the least common ones with a low \texttt{artist term weights}, used for very few songs, are more like miscellaneous tags (e.g. 'taubertal festival 08', 'monolith festival', ...).
+The most recurrent \texttt{artist terms} (e.g. 'rock', 'pop', ...) actually do correspond to music genres, while the least common ones with a low \texttt{artist term weights}, used for very few songs, are more like miscellaneous tags (e.g. 'taubertal festival 08', 'guitar hero', 'witty', ...).
 
 In order to determine which music genres are the most popular, we weighted all the \texttt{artist terms} of songs with a \texttt{song hotttnesss} greater or equal to a certain threshold by their corresponding \texttt{artist term weights}. 
 We then normalized the result, to obtain the "proportion" of the most popular music genres.
 It turns out the dataset is largely dominated by the rock, pop and electronic genre, with rock and pop ranking top, followed by all possible variations.
-%For a lower threshold, the ranking is essentially very similar: only the weights decrease, since more songs are included, and hence more \texttt{artist terms} as well.
-%Ideally, group artist terms together, but not obvious how to do that
-
-%\begin{tabular}{|lr|}
-%\hline
-%\texttt{artist\_terms} & occurrences\\
-%\hline
-%rock               & 131337\\
-%pop                 & 98814\\
-%electronic          & 96684\\
-%alternative rock    & 75882\\
-%alternative         & 69619\\
-%indie               & 62706\\
-%hip hop             & 58751\\
-%jazz                & 57699\\
-%indie rock          & 57193\\
-%united states       & 55522\\
-%pop rock            & 53863\\ 
-%punk                & 53043\\
-%\hline
-%\end{tabular}
-%\captionof{table}{Top-12 \texttt{artist\_terms} (non-weighted)}
-
-
-%\begin{tabular}{|lrr|}
-%\hline
-%\texttt{artist\_terms} & weight (\%) & occurrences\\
-%\hline
-%rock 				& 4.617761 &	426\\
-%pop 				& 3.738941 &	409\\
-%alternative 		& 2.493392 &	264\\
-%indie 				& 2.221263 &	256\\
-%alternative rock 	& 2.011225 &	188\\
-%guitar 			& 1.987991 &	308\\
-%indie rock 		& 1.904490 &	163\\
-%acoustic 			& 1.577093 &	231\\
-%electronic 		& 1.488118 &	182\\
-%soundtrack 		& 1.482128 &	172\\
-%soul 				& 1.328866 &	180\\
-%classic rock 		& 1.181799 &	116\\
-%punk 				& 1.166998 &	149\\
-%\hline
-%\end{tabular}
-%\captionof{table}{Top-12 \texttt{artist\_terms} (weighted) for a \texttt{song\_hotttnesss} threshold of 0.9 (500 songs), and a minimum number of occurrences of 0}
-
 
 \subsection{Artist popularity}
 Since rock and pop oriented music tends to showcase the band or the lead singer, it seems natural that the artist must be somehow linked to the "hotttnesss" of the song itself.
@@ -195,26 +143,19 @@ Notice that the gap between 0.0 and 0.2: as mentioned before, almost no song has
 \begin{figure}[h!]
 \centering
 \captionsetup{width=1.0\textwidth}
-\includegraphics[trim={2cm 4cm 2cm 2cm},clip, scale=0.3]{images/"artist_hotttnesss_vs_song_hotttnesss".png}
+\includegraphics[trim={2cm 2cm 2cm 2.5cm},clip, scale=0.3]{images/"artist_hotttnesss_vs_song_hotttnesss".png}
 \caption{Artist hotttnesss compared to the average song hotttnesss}
 \label{fig:artist_hotttnesss}
 \end{figure}
 
 \subsection{Song duration}
-Despite some outliers - the shortest and longest "songs" are 0.67 seconds respectively 3007 seconds (50min 7s) long - close to 75\% (73.47\%) of the songs are 2 to 5 minutes long, a very common duration for contemporary music tracks.
-%\begin{figure}[h!]
-%\centering
-%\captionsetup{width=1.0\textwidth}
-%\includegraphics[trim={2.5cm 0cm 0cm 0cm},clip, scale=0.26]{images/"song_duration_vs_song_hotttnesss".png}
-%\caption{Song duration against song hotttnesss}
-%\label{fig:song_duration}
-%\end{figure}
-Figure \ref{fig:song_duration_over_years} displays the average song duration for different threshold intervals from 1925 to 2010. 
+Despite some outliers - the shortest and longest "songs" are 0.52 seconds respectively 3032 seconds (50min 32s) long - close to 75\% (72.64\%) of the songs are 2 to 5 minutes long, a very common duration for contemporary music tracks.
+Figure \ref{fig:song_duration_over_years} displays the average song duration for different threshold intervals from 1922 to 2010.
 Unfortunately, as can be seen by the very irregular values before 1960, there is most likely not enough data before 1960 to make any reasonable conclusion regarding that period. 
 We can nonetheless make the following observations:
 \begin{enumerate}
 \itemsep 0mm
-\item The top songs have a duration in a tight interval, between 120 s and 419 s, and an average of 251 s.
+\item The top songs have a duration in a relatively tight interval, between 120 s and 656 s, and an average of 247 s.
 \item Over the years, the average song duration of the top songs displays less and less variations
 \item In the last years, the average top songs duration dropped below the other average song durations
 \end{enumerate}
@@ -223,7 +164,7 @@ This suggests that in order to be rated "hot", songs tend to comply more and mor
 \begin{figure}[h!]
 \centering
 \captionsetup{width=1.0\textwidth}
-\includegraphics[trim={2.5cm 1cm 0cm 1cm},clip, scale=0.26]{images/"song_duration_average_over_years".png}
+\includegraphics[trim={2.5cm 1cm 0cm 1.5cm},clip, scale=0.26]{images/"song_duration_average_over_years".png}
 \caption{Average song duration evoluation over the years}
 \label{fig:song_duration_over_years}
 \end{figure}
@@ -250,23 +191,21 @@ Interestingly, while the frequency of 'I' and 'we' keeps increasing, the one for
 \end{figure}
 
 \subsubsection{Without stopwords}
-It is not always obvious to determine whether a word is a stopword or not. We heuristically compiled a list of stopwords using the freely-available lists of stopwords at \url{https://www.ranks.nl/stopwords} and \url{http://www.lextek.com/manuals/onix/stopwords1.html}.
+It is not always obvious to determine whether a word is a stopword or not. We heuristically compiled a list of stopwords using a few freely-available lists of stopwords.
 When ignoring the stopwords in the ranking, we can point out three characteristics of popular songs (although these are typically not present all at the same time in hot rated songs):
 \begin{enumerate}
 \itemsep 0mm
 \item The presence of the specific words 'love', 'time' and 'feel', which actually keep ranking among the top places for high \texttt{song hotttnesss} thresholds as well as low ones
 \item The non-negligible use of the interjections 'yeah' and 'oh' 
-%(although the frequency of 'oh' drops above a threshold of 0.9)
 \item The use of informal speech like 'gonna', strengthened by the fact that it is often found together with 'yeah'
 \end{enumerate}
-This analysis is nonetheless somewhat limited by the bag-of-words nature of the musiXmatch dataset. Still, while 'yeah', oh' or 'gonna' could actually be considered as stopwords, it is interesting to see they are the second "type" of words to rank top after the stopwords compiled in our list.
+This analysis is nonetheless somewhat limited by the bag-of-words nature of the musiXmatch dataset. Still, while 'yeah', 'oh' or 'gonna' could actually be considered as stopwords, it is interesting to see they are the second "type" of words to rank top after the stopwords compiled in our list.
 
 
 \subsubsection{Language and artist's country of origin}
-We matched the \texttt{artist latitude} and \texttt{artist longitude} of 35 106 songs with valid coordinates to a country using reverse geolocation.  %(\texttt{pygeocoder} and \texttt{pygeolib} packages)
+We matched the \texttt{artist latitude} and \texttt{artist longitude} of 124 216 songs with valid coordinates to a country using reverse geolocation.  %(\texttt{pygeocoder} and \texttt{pygeolib} packages)
 Among these songs, there is an unequal repartition between the different countries.
-An overwhelming majority of songs indeed comes from the United States (20 276), followed by the United Kingdom (4 831), but the number goes down to a single song for Afghanistan, China and Bolivia.
-%map?
+An overwhelming majority of songs indeed comes from the United States (78 129), followed by the United Kingdom (14 093) and Canada (4399), but the number goes down to a single song for Martinique.
 This means that more than 60\% of the songs come from countries of Anglo-Saxon culture (United States, United Kingdom, Canada, Australia, ...). As a consequence, the vast majority of lyrics are written in English, so that words of different languages tend to be eclipsed in the analysis.
 Even after removing the English stopwords, the top ranked words are still English words.
 
@@ -274,20 +213,50 @@ However, we also suggest this does not simply reflect the fact that much more so
 In fact, there tends to be a mismatch between the country of origin of the artist and the language in which the lyrics were written.
 By checking the top songs from non Anglo-Saxon countries such as Sweden, Denmark or Greece, it turns out the lyrics are actually written in English, not in Swedish, Danish or Greek.
 
-%A few of the top songs have Spanish lyrics, but these songs are still a minority though.
-%intersection
-%example of Hungarian?
-%Most words present only in low rated songs are actually non-English words. This also raises the question on how the song hotttnesss was evaluated by the Echo Nest; population may tend to rate English songs rather than non English ones
+\subsection{User-song plays}
+A first step to do with the Taste Profile dataset is to compare the number of times a song has been listened to its song hotttnesss. To this purpose, we collected, for each song, the number of time it was heard over all users. As we said, there is 384 546 such record, going from only one play to 726 885 plays (max). The mean is only at 360 plays, with a standard deviation of $\approx$3256. As we can see in Figure \ref{fig:play_by_song}, it follows kind of a long tail distribution. 
 
-	
+\begin{figure}[h!]
+\centering
+\captionsetup{width=\textwidth}
+\includegraphics[trim={2.5cm 1cm 0cm 1cm}, clip, scale=0.22]{images/"plays_by_song".png}
+\caption{Users connected by the songs they heard in common}
+\label{fig:play_by_song}
+\end{figure}
+
+Then we normalized those values to get something comparable to the song hotttnesss attribute and 'inner' merged them to the original data.
+
+Hopefully, over the 384 546 songs in the Taste Profile dataset, only $27\%$ could have been merged. After removing 3 data points which can be guessed as outliers, we obtain a result not so convincing. Figure \ref{fig:hot_plays_scatter} suggest a small correlation. Actually we obtain a correlation of 0.18, which is not significant. Yet since $\approx73\%$ of the data lacks, we can expect a much significant correlation with the whole dataset. Hence, we can not conclude without further analysis here.
+
+\begin{figure}[h!]
+\centering
+\captionsetup{width=\textwidth}
+\includegraphics[trim={2.5cm 1cm 0cm 1cm}, clip, scale=0.22]{images/"hot_plays_scatter".png}
+\caption{Users connected by the songs they heard in common}
+\label{fig:hot_plays_scatter}
+\end{figure}
+
+\subsubsection{Clustering in users' taste}
+Are musical tastes clustered or not ? This is the question we wanted to address in this section. First of all, we had a look at the connectivity for a small subset. For this, we took a set of 30 users (and all their plays). We see in Figure \ref{fig:user_connected_by_song} how the users are linked together through the songs they played. Even though the graph seems connected, a few ones (7 over 30) are not connected. For further analysis, we simplified this graph in the following way : two users are connected by an edge if they listened to the same song at least once. This can also be viewed as having an edge between any pair of users (red dots) whose shortest path is of length two. 
+
+\begin{figure}[h!]
+\centering
+\captionsetup{width=0.8\textwidth}
+\includegraphics[trim={2cm 4cm 0cm 4cm}, clip, scale=0.11]{images/"users_songs_1".png}
+\caption{Users connected by the songs they heard in common}
+\label{fig:user_connected_by_song}
+\end{figure}
+
+Of course when applying this to 1 019 318 users, the result is not the same. We only obtain one giant connected component. So we tried to apply the Louvain method, which is used to unfold communities 
+
 \section{Conclusions}
 In this project, we explored several song features using the Million Song Dataset. The aim was to determine to which extent they were linked to the popularity of a song.
 Regarding the music genre, focusing on rock or pop seems to have the advantage of reaching a large audience.
 Moreover, since the most popular songs are not symphony-like compositions, the song duration should be from 2 to 7 minutes, preferably around 4 minutes (after all, fitting on the radio is a plus for promotion).
-Concerning the artist popularity, not being "hot" yet will not significantly impact the chances to produce "hot" song: not-so-hot artists have as much chances to produce a "hot" song that the "hotttessst" ones, and the "hotttessst" songs are not necessarily produced by the "hotttessst" artists.
+Concerning the artist popularity, not being "hot" will not significantly impact the chances to produce "hot" song: not-so-hot artists have as much chances to produce a "hot" song that the "hotttessst" ones, and the "hotttessst" songs are not necessarily produced by the "hotttessst" artists.
 Similarly to the music genre, English should be the language of choice when it comes down to the lyrics, as it will reach a wider audience. What is more, making it about 'I \& you', or 'we' and raises the chances of winning the hearts of your future listeners.
 
-
+\newpage
 \begin{thebibliography}{}
 \bibitem[\protect\citename{MSD official documentation}]{MSD}
 \url{https://labrosa.ee.columbia.edu/millionsong}
